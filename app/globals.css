@@ -42,10 +42,48 @@
 }
 
 /* remove quill borders */
-
-.ql-editor {
-  border:none !important;
+/* Remove toolbar border */
+.ql-toolbar {
+  border: none !important;
 }
+
+/* Remove editor container border */
+.ql-container {
+  border: none !important;
+}
+
+/* Remove bottom border sometimes applied by Quill */
+.ql-editor {
+  border: none !important;
+}
+
+/* Remove borders inside pickers (dropdowns) */
+.ql-picker-options {
+  border: none !important;
+}
+
+/* Remove border around picker base */
+.ql-picker {
+  border: none !important;
+}
+ .ql-editor {
+        border: none !important; 
+        background-color: #222; /* Darker background for the editing area */
+        color: #eee; /* Light text color in the editor */
+    }
+
+    .ql-toolbar.ql-snow .ql-stroke {
+      border: none !important;
+        stroke: #eee; /* Light color for toolbar icons */
+    }
+
+    .ql-toolbar.ql-snow .ql-fill {
+      border: none !important;
+        fill: #eee; /* Light color for filled toolbar icons */
+    }
+
+    /* Adjust dropdowns, tooltips, and other elements as needed */
+    
 
 /* Base body styles */
 body {

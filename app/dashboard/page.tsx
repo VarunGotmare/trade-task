@@ -63,24 +63,32 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#faf5ff] flex flex-col">
+    <div className="min-h-screen bg-[#0d0b12] text-[#eae2ff] flex flex-col">
 
       {/* Header */}
-      <header className="w-full bg-[#9333ea] text-white px-8 py-5 flex items-center justify-between sticky top-0 shadow-md z-20">
+      <header className="w-full bg-[#181322] border-b border-[#2a2338] px-8 py-4 flex items-center justify-between sticky top-0 shadow-lg z-20">
         {loading ? (
-          <Skeleton variant="text" width={150} height={35} sx={{ bgcolor: "rgba(255,255,255,0.3)" }} />
+          <Skeleton variant="text" width={150} height={35} sx={{ bgcolor: "#2a2338" }} />
         ) : (
-          <h1 className="text-3xl font-semibold tracking-tight">Dashboard</h1>
+          <h1 className="text-2xl font-semibold tracking-wide text-[#d7c5ff]">
+            Dashboard
+          </h1>
         )}
 
         <div className="relative" ref={menuRef}>
           {/* Avatar */}
           {loading ? (
-            <Skeleton variant="circular" width={45} height={45} sx={{ bgcolor: "rgba(255,255,255,0.3)" }} />
+            <Skeleton variant="circular" width={45} height={45} sx={{ bgcolor: "#2a2338" }} />
           ) : (
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="w-12 h-12 flex items-center justify-center bg-white text-[#9333ea] font-bold rounded-full shadow hover:bg-gray-100 transition"
+              className="
+                w-11 h-11 flex items-center justify-center
+                bg-[#2a2338] text-[#c8a7ff] 
+                font-medium rounded-full 
+                border border-[#3b3052]
+                hover:bg-[#352b47] transition
+              "
             >
               {user?.name?.charAt(0).toUpperCase()}
             </button>
@@ -88,16 +96,16 @@ export default function DashboardPage() {
 
           {/* Dropdown */}
           {!loading && menuOpen && (
-            <div className="absolute right-0 mt-2 w-44 bg-white border rounded-lg shadow-lg py-2 text-gray-700">
+            <div className="absolute right-0 mt-2 w-44 bg-[#181322] border border-[#2a2338] rounded-md shadow-xl py-2 text-[#d7c5ff]">
               <button
                 onClick={() => router.push("/profile")}
-                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                className="block w-full text-left px-4 py-2 hover:bg-[#2a2338]"
               >
                 Profile
               </button>
               <button
                 onClick={logout}
-                className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-red-600"
+                className="block w-full text-left px-4 py-2 hover:bg-[#2a2338] text-red-400"
               >
                 Logout
               </button>
@@ -112,13 +120,15 @@ export default function DashboardPage() {
         {/* Greeting Card */}
         <div className="mb-10">
           {loading ? (
-            <Skeleton variant="text" width={280} height={40} />
+            <Skeleton variant="text" width={280} height={40} sx={{ bgcolor: "#2a2338" }} />
           ) : (
-            <div className="bg-[#f3e8ff] border border-[#e9d5ff] px-6 py-5 rounded-xl shadow-sm">
-              <h2 className="text-3xl font-semibold text-[#6b21a8]">
-                Welcome, {user.name.split(" ")[0]} 👋
+            <div className="bg-[#181322] border border-[#2a2338] px-6 py-5 rounded-xl shadow">
+              <h2 className="text-2xl font-semibold text-[#d7c5ff]">
+                Welcome, {user.name.split(" ")[0]}
               </h2>
-              <p className="text-[#9333ea] mt-1 text-sm">Hope you're having a productive day!</p>
+              <p className="text-[#a78bdc] mt-1 text-sm">
+                Your notes are available below.
+              </p>
             </div>
           )}
         </div>
@@ -127,19 +137,26 @@ export default function DashboardPage() {
         <div className="w-full">
           {loading ? (
             <>
-              <Skeleton variant="text" width={180} height={30} />
-              <Skeleton variant="rectangular" width={"100%"} height={160} />
+              <Skeleton variant="text" width={180} height={30} sx={{ bgcolor: "#2a2338" }} />
+              <Skeleton variant="rectangular" width={"100%"} height={160} sx={{ bgcolor: "#2a2338" }} />
             </>
           ) : (
             <>
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold text-[#6b21a8]">Your Notes</h3>
+                <h3 className="text-xl font-semibold text-[#d7c5ff]">
+                  Your Notes
+                </h3>
 
                 <button
                   onClick={() => router.push("/dashboard/note/new")}
-                  className="px-5 py-2 bg-[#9333ea] text-white rounded-lg font-medium shadow hover:bg-[#7e22ce] transition"
+                  className="
+                    px-5 py-2 rounded-lg
+                    bg-[#9b5bff] text-white 
+                    font-medium shadow
+                    hover:bg-[#8747e8] transition
+                  "
                 >
-                  + New Note
+                  New Note
                 </button>
               </div>
 
@@ -158,12 +175,12 @@ export default function DashboardPage() {
             position: "fixed",
             bottom: 28,
             right: 28,
-            backgroundColor: "#9333ea",
+            backgroundColor: "#9b5bff",
             color: "white",
-            "&:hover": { backgroundColor: "#7e22ce" },
+            "&:hover": { backgroundColor: "#8747e8" },
             width: 60,
             height: 60,
-            boxShadow: "0px 6px 16px rgba(0,0,0,0.25)",
+            boxShadow: "0px 6px 20px rgba(0,0,0,0.5)",
           }}
         >
           <AddIcon sx={{ fontSize: 28 }} />

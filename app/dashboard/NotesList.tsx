@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import NoteCard from "@/components/NoteCard";
 import Skeleton from "@mui/material/Skeleton";
 
+
+
 export default function NotesList() {
   const router = useRouter();
 
@@ -36,6 +38,19 @@ export default function NotesList() {
       setLoading(false);
     }
   }
+
+async function handleDelete(id: string) {
+  const token = localStorage.getItem("token");
+
+  await fetch(`/api/notes/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  loadNotes();
+}
 
   useEffect(() => {
     loadNotes();
@@ -81,8 +96,10 @@ export default function NotesList() {
       {notes.map((note) => (
         <NoteCard
           key={note._id}
+          id={note._id}
           title={note.title}
           content={note.content}
+          onDelete={handleDelete}
           onClick={() => router.push(`/dashboard/note/${note._id}`)}
         />
       ))}
